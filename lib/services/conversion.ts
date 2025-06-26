@@ -115,6 +115,7 @@ export class ConversionService {
           siteName: article.siteName,
           excerpt: article.excerpt,
           length: article.length,
+          url: url, // Add the original URL to metadata
         },
       };
     } catch (error) {
@@ -155,7 +156,7 @@ export class ConversionService {
     if (metadata.byline) metadataParts.push(`**Author:** ${metadata.byline}`);
     if (metadata.siteName) metadataParts.push(`**Source:** ${metadata.siteName}`);
     metadataParts.push(`**Original URL:** ${originalUrl}`);
-    if (metadata.length) metadataParts.push(`**Reading time:** ~${Math.ceil(metadata.length / 400)} min`);
+    if (metadata.length) metadataParts.push(`**Reading time:** ~${Math.ceil(metadata.length / 200)} min`);
 
     if (metadataParts.length > 0) {
       parts.push(metadataParts.join('  \n'));
@@ -200,7 +201,7 @@ export class ConversionService {
 
       return {
         markdown: finalMarkdown,
-        metadata,
+        metadata, // This now includes the URL
       };
     } catch (error) {
       if (error instanceof Error) {

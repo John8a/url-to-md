@@ -6,6 +6,7 @@ export interface ConversionResult {
     siteName?: string;
     excerpt?: string;
     length?: number;
+    url?: string;
   };
 }
 

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { marked } from 'marked';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Copy, Download, Info } from 'lucide-react';
+import { Button } from '../ui/button';
 
 // Configure marked with proper options
 marked.setOptions({
@@ -11,6 +14,7 @@ type MarkdownEditorProps = {
   initialMarkdown?: string;
   metadata?: {
     title?: string;
+    siteName?: string;
     [key: string]: any;
   };
 };
@@ -69,44 +73,31 @@ const MarkdownEditor = ({
 
   return (
     <div className="w-full max-w-7xl mx-auto p-6 bg-white">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
-          HTML to Markdown Converter
-        </h1>
-        <p className="text-gray-600">
-          Convert and edit your markdown with live preview
-        </p>
-      </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[600px]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Editor Panel */}
-        <div className="border border-gray-200 rounded-lg shadow-sm bg-white flex flex-col">
+        <div className="border border-gray-200 overflow-hidden rounded-lg bg-white flex flex-col h-dvh">
           <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gray-50">
             <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-              Markdown Editor
+              
+              Live Markdown
             </h2>
             <div className="flex gap-2">
-              <button
+              <Button
                 onClick={handleCopy}
-                className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 flex items-center gap-1"
+                variant="outline"
               >
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
+                <Copy className="h-4 w-4" />
                 Copy
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={handleDownload}
-                className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 flex items-center gap-1"
+                variant="outline"
               >
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
+                <Download className="h-4 w-4" />
                 Download
-              </button>
+              </Button>
+
             </div>
           </div>
           
@@ -122,13 +113,9 @@ const MarkdownEditor = ({
         </div>
 
         {/* Preview Panel */}
-        <div className="border border-gray-200 rounded-lg shadow-sm bg-white flex flex-col">
+        <div className="border border-gray-200 overflow-hidden rounded-lg bg-white flex flex-col">
           <div className="p-4 border-b border-gray-200 bg-gray-50">
             <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
               Live Preview
             </h2>
           </div>
