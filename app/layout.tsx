@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Space_Mono } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const spaceMono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-roboto-mono' });
 
 export const metadata: Metadata = {
   title: 'URL to Markdown Converter',
@@ -27,11 +28,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <main className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <html lang="en">
+      <body className={`${inter.variable} ${spaceMono.variable}`}>
+        <div className="h-screen bg-background text-foreground">
           {children}
-        </main>
+        </div>
       </body>
     </html>
   );
