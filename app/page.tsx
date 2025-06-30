@@ -6,7 +6,7 @@ import MarkdownEditor from '@/components/general/markdown-editor';
 import { useConversion } from '@/lib/hooks/use-conversion';
 import { conversionRequestSchema } from '@/lib/validations/conversion';
 import { CopilotUrlInput } from '@/components/forms/url-input';
-import { ExternalLink, Globe, Sparkles } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface Conversion {

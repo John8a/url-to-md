@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowRight, Loader2, Globe, ArrowUp } from 'lucide-react';
+import { Loader2, ArrowUp } from 'lucide-react';
 
 interface CopilotUrlInputProps {
     onSubmit: (url: string) => Promise<void>;

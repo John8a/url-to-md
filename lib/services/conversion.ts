@@ -30,7 +30,7 @@ export class ConversionService {
     // Custom rule for better link handling
     this.turndownService.addRule('links', {
       filter: 'a',
-      replacement: (content: string, node: any) => {
+      replacement: (content: string, node: any) => { // eslint-disable-line
         const href = node.getAttribute('href');
         if (!href || href === content) return content;
         return `[${content}](${href})`;
@@ -40,7 +40,7 @@ export class ConversionService {
     // Custom rule for code blocks
     this.turndownService.addRule('codeBlock', {
       filter: 'pre',
-      replacement: (content: string, node: any) => {
+      replacement: (content: string, node: any) => { // eslint-disable-line
         const codeElement = node.querySelector('code');
         const language = codeElement?.getAttribute('class')?.match(/language-(\w+)/)?.[1] || '';
         return `\n\`\`\`${language}\n${content}\n\`\`\`\n`;
@@ -87,7 +87,7 @@ export class ConversionService {
     }
   }
 
-  extractContent(html: string, url: string): { content: string; metadata: any } {
+  extractContent(html: string, url: string): { content: string; metadata: any } { // eslint-disable-line
     try {
       const dom = new JSDOM(html, { url });
       const document = dom.window.document;
@@ -118,7 +118,7 @@ export class ConversionService {
           url: url, // Add the original URL to metadata
         },
       };
-    } catch (error) {
+    } catch {
       throw new Error(ERROR_MESSAGES.PARSE_FAILED);
     }
   }
@@ -135,7 +135,7 @@ export class ConversionService {
 
   formatFinalMarkdown(
     markdown: string,
-    metadata: any,
+    metadata: any, // eslint-disable-line
     originalUrl: string,
     includeMetadata: boolean = true
   ): string {

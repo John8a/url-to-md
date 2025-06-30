@@ -2,10 +2,6 @@
 
 import { Button } from '@/components/ui/button';
 import { 
-  Globe, 
-  History, 
-  Settings, 
-  FileText, 
   Trash2,
   ExternalLink
 } from 'lucide-react';

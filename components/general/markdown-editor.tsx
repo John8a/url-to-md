@@ -39,7 +39,7 @@ export function MarkdownEditor({ initialMarkdown, metadata }: MarkdownEditorProp
       await fileService.copyToClipboard(markdown);
       setCopySuccess(true);
       setTimeout(() => setCopySuccess(false), 2000);
-    } catch (err) {
+    } catch {
       console.log('Failed to copy to clipboard');
     } finally {
       setIsCopying(false);
@@ -52,7 +52,7 @@ export function MarkdownEditor({ initialMarkdown, metadata }: MarkdownEditorProp
       await wordCopyService.copyToWord(markdown, metadata);
       setWordCopySuccess(true);
       setTimeout(() => setWordCopySuccess(false), 2000);
-    } catch (err) {
+    } catch {
       console.log('Failed to copy for Word');
     } finally {
       setIsCopyingWord(false);
@@ -64,7 +64,7 @@ export function MarkdownEditor({ initialMarkdown, metadata }: MarkdownEditorProp
       const filename = fileService.generateFilename(metadata?.title, metadata?.siteName);
       fileService.downloadMarkdown(markdown, filename);
       console.log(SUCCESS_MESSAGES.DOWNLOADED);
-    } catch (err) {
+    } catch {
       console.log('Failed to download file');
     }
   };
@@ -73,7 +73,7 @@ export function MarkdownEditor({ initialMarkdown, metadata }: MarkdownEditorProp
     try {
       const filename = fileService.generateFilename(metadata?.title, metadata?.siteName);
       wordCopyService.downloadAsWordDocument(markdown, filename, metadata);
-    } catch (err) {
+    } catch {
       console.log('Failed to download Word document');
     }
   };
@@ -81,7 +81,7 @@ export function MarkdownEditor({ initialMarkdown, metadata }: MarkdownEditorProp
   const renderPreview = () => {
     try {
       return { __html: marked(markdown) };
-    } catch (err) {
+    } catch {
       return { __html: '<p class="text-destructive">Error rendering markdown preview</p>' };
     }
   };

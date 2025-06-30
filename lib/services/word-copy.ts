@@ -4,7 +4,7 @@ export class WordCopyService {
    */
   static markdownToWordHtml(markdown: string): string {
     // Basic markdown to HTML conversion optimized for Word
-    let html = markdown
+    const html = markdown
       // Headers
       .replace(/^### (.*$)/gm, '<h3 style="color: #2F4F4F; font-size: 16px; font-weight: bold; margin: 12px 0 6px 0;">$1</h3>')
       .replace(/^## (.*$)/gm, '<h2 style="color: #2F4F4F; font-size: 18px; font-weight: bold; margin: 14px 0 8px 0;">$1</h2>')
@@ -66,7 +66,7 @@ export class WordCopyService {
   /**
    * Creates Word-compatible clipboard data
    */
-  static async copyToWord(markdown: string, metadata?: any): Promise<void> {
+  static async copyToWord(markdown: string, metadata?: any): Promise<void> { // eslint-disable-line
     const html = this.markdownToWordHtml(markdown);
     
     // Create complete HTML document for Word
@@ -133,7 +133,7 @@ export class WordCopyService {
           }),
         ]);
         return;
-      } catch (error) {
+      } catch {
         console.warn('Modern clipboard API failed, falling back to legacy method');
       }
     }
@@ -170,7 +170,7 @@ export class WordCopyService {
   /**
    * Creates a Word document download
    */
-  static downloadAsWordDocument(markdown: string, filename: string, metadata?: any): void {
+  static downloadAsWordDocument(markdown: string, filename: string, metadata?: any): void { // eslint-disable-line
     const html = this.markdownToWordHtml(markdown);
     
     const wordDocument = `
